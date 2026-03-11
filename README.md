@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Study Planner 📚
 
 A full-stack web application designed to help students automatically generate a study schedule based on their subjects, exam dates, difficulty levels, and available daily study hours.
@@ -53,3 +54,6 @@ A full-stack web application designed to help students automatically generate a 
 - Backend: Node.js, Express.js.
 - Database: MySQL (mysql2 connector).
 - Security: bcryptjs for hashing, jsonwebtoken for session management.
+=======
+# AI_Study_Planner
+>>>>>>> 9dda88ee424a1e4f7ae87ae2fb738bcf2af7d51b
