@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">AI Study Planner 📚</div>
+        <div class="nav-links" id="navLinks">
+            <button id="navDashboard" class="hidden nav-btn">Dashboard</button>
+            <button id="navAddSubject" class="hidden nav-btn">Add Subject</button>
+            <button id="navStudyPlan" class="hidden nav-btn">Study Plan</button>
+            <button id="navLogout" class="hidden nav-btn outline">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Toast Notifications -->
+        <div id="toast" class="toast hidden"></div>
+
+        <!-- Registration View -->
+        <section id="register-view" class="view hidden">
+            <div class="card auth-card">
+                <h2>Create an Account</h2>
+                <p>Start planning your studies effectively.</p>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="regName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="regEmail" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn primary-btn btn-block">Register</button>
+                </form>
+                <p class="auth-switch">Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </div>
+        </section>
+
+        <!-- Login View -->
+        <section id="login-view" class="view">
+            <div class="card auth-card">
+                <h2>Welcome Back</h2>
+                <p>Login to your AI Study Planner.</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn primary-btn btn-block">Login</button>
+                </form>
+                <p class="auth-switch">Don't have an account? <a href="#" id="showRegister">Register</a></p>
+            </div>
+        </section>
+
+        <!-- Dashboard View -->
+        <section id="dashboard-view" class="view hidden">
+            <div class="dashboard-header">
+                <h2 id="welcomeMsg">Welcome, Student!</h2>
+                <p>Here is your study overview.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Subjects</h3>
+                    <p id="totalSubjectsCount" class="stat-value">0</p>
+                </div>
+                <div class="stat-card highlight">
+                    <h3>Progress (Completed)</h3>
+                    <p id="progressPercentage" class="stat-value">0%</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Your Subjects</h3>
+                    <button class="btn primary-btn small" id="goToAddSubjectBtn">+ Add Subject</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="subjectsTable">
+                        <thead>
+                            <tr>
+                                <th>Subject Name</th>
+                                <th>Exam Date</th>
+                                <th>Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Subjects loaded here -->
+                        </tbody>
+                    </table>
+                    <p id="noSubjectsMsg" class="empty-state">No subjects added yet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Subject View -->
+        <section id="add-subject-view" class="view hidden">
+            <div class="card form-card">
+                <h2>Add New Subject</h2>
+                <form id="addSubjectForm">
+                    <div class="form-group">
+                        <label>Subject Name</label>
+                        <input type="text" id="subName" required placeholder="e.g. Mathematics">
+                    </div>
+                    <div class="form-group">
+                        <label>Exam Date</label>
+                        <input type="date" id="subDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Difficulty Level</label>
+                        <select id="subDiff" required>
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn primary-btn btn-block">Save Subject</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Study Plan View -->
+        <section id="study-plan-view" class="view hidden">
+            <div class="card">
+                <div class="study-plan-header">
+                    <h2>Your AI Study Plan</h2>
+                    <div class="generate-box">
+                        <input type="number" id="dailyHours" placeholder="Daily hrs (e.g. 4)" min="1" max="24" required>
+                        <button id="generatePlanBtn" class="btn secondary-btn">Generate Plan</button>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table" id="planTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Task</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Study plan tasks loaded here -->
+                        </tbody>
+                    </table>
+                    <p id="noPlanMsg" class="empty-state">No study plan generated yet. Enter your daily hours and generate!</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
